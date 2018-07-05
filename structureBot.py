@@ -74,4 +74,4 @@ for pos in req.json():
     if "Block" in fuel_type["name"]:
       hours = fuel["quantity"]/rate
   if hours == 24: make_slack_call("*"+moon["name"]+"*\n_"+type["name"]+"_ has 24 hours of fuel remaining")
-  if hours >= 0 and hours < 6:  make_slack_call("*"+moon["name"]+"*\n_"+type["name"]+"_ has less than 6 hours of fuel remaining")
+  if hours > 0 and hours < 6:  make_slack_call("*"+moon["name"]+"*\n_"+type["name"]+"_ has less than 6 hours of fuel remaining")
