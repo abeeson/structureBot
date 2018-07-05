@@ -1,2 +1,5 @@
 [config]
-refresh_token:*INSERT_YOUR_REFRESH_TOKEN_HERE*
+corporation_id:*corp_id_here*
+refresh_token:*your ESI refresh token goes here*
+slack_token:*slack bot token goes here*
+slack_channel:*slack channel name, local or global ID*
