@@ -45,7 +45,6 @@ def make_slack_call(message):
   slack_channel = config.get("config","slack_channel")
   slack_header = {"User-Agent":"structureBot: github link here","Authorization":"Bearer "+slack_token,"Content-Type":"application/json; charset=utf-8"}
   slack_obj = {"channel":slack_channel,"text":message,"as_user":"true"}
-  #req = requests.post('https://slack.com/api/chat.postMessage', headers=slack_header, data=json.dumps(slack_obj))
   req = requests.post('https://slack.com/api/chat.postMessage', headers=slack_header, json=slack_obj)
   if "error" in req.json(): print "Bot error:"+req.json()["error"] 
 
