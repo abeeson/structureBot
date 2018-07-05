@@ -11,10 +11,10 @@ to use this you will need to get a valid ESI refresh_token, as well as setting u
 
 ## Required ESI roles
 This script requires ESI grants for the following:
-*esi-mail.read_mail.v1 - required for notifications i think, still testing this
-*esi-universe.read_structures.v1 - required to get details about your structures for names (not in corp ESI, see below)
-*esi-corporations.read_structures.v1 - required to get a list of structures that your corporation has - Unfortunately doesn't contain names
-*esi-corporations.read_starbases.v1 - Allows access to legacy POS data for POS fuel levels
+* esi-mail.read_mail.v1 - required for notifications i think, still testing this
+* esi-universe.read_structures.v1 - required to get details about your structures for names (not in corp ESI, see below)
+* esi-corporations.read_structures.v1 - required to get a list of structures that your corporation has - Unfortunately doesn't contain names
+* esi-corporations.read_starbases.v1 - Allows access to legacy POS data for POS fuel levels
 
 ### ESI token
 1. go here: https://login.eveonline.com/oauth/authorize/?response_type=code&redirect_uri=https://localhost/na&client_id=e29f9ccc16094478859fcc6a9767b836&scope=esi-mail.read_mail.v1%20esi-universe.read_structures.v1%20esi-corporations.read_structures.v1%20esi-corporations.read_starbases.v1 and authorise your EVE account with this tool
