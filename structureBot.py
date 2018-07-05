@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import ConfigParser
+import configparser
 import requests
 from requests.auth import HTTPBasicAuth
 from datetime import datetime
@@ -12,7 +12,7 @@ moons = {}
 systems = {}
 types = {}
 
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 config.read("structureBot.config")
 
 refresh_token = config.get("config","refresh_token")
@@ -46,7 +46,7 @@ def make_slack_call(message):
   slack_header = {"User-Agent":"structureBot: github link here","Authorization":"Bearer "+slack_token,"Content-Type":"application/json; charset=utf-8"}
   slack_obj = {"channel":slack_channel,"text":message,"as_user":"true"}
   req = requests.post('https://slack.com/api/chat.postMessage', headers=slack_header, json=slack_obj)
-  if "error" in req.json(): print "Bot error:"+req.json()["error"] 
+  if "error" in req.json(): print("Bot error:"+req.json()["error"]) 
 
 access_token = refresh_esi_token()
 header = {'User-Agent':'structureBot: github link here','Authorization':'Bearer '+access_token}
