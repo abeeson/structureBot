@@ -45,6 +45,7 @@ def make_slack_call(message):
   slack_channel = config.get("config","slack_channel")
   slack_header = {"User-Agent":"structureBot: https://github.com/abeeson/structureBot","Authorization":"Bearer "+slack_token,"Content-Type":"application/json; charset=utf-8"}
   slack_obj = {"channel":slack_channel,"text":message,"as_user":"true"}
+  print message
   req = requests.post('https://slack.com/api/chat.postMessage', headers=slack_header, json=slack_obj)
   if "error" in req.json(): print("Bot error:"+req.json()["error"]) 
 
@@ -55,9 +56,14 @@ for structure in req.json():
   if 'fuel_expires' in structure:
     struct = requests.get('https://esi.evetech.net/v1/universe/structures/'+str(structure["structure_id"]), headers=header)
     timediff = get_datetime_obj(structure["fuel_expires"])-datetime.utcnow()
-    if timediff.days == 0 & timediff.seconds >= 82800:
+#    print(structure["structure_id"])
+    if "error" in struct.json():
+      print("Problem getting details for "+str(structure["structure_id"])+"\n")
+      continue
+#    print(struct.json()["name"] + " has " + str(timediff.days) + " days and " + str(timediff.seconds) + " seconds of fuel left\n")
+    if timediff.days == 0 and timediff.seconds >= 82800:
       make_slack_call("\""+struct.json()["name"]+"\": Has less than a day of fuel left")
-    if timediff.days == 0 & timediff.seconds <= 18800:
+    if timediff.days == 0 and timediff.seconds <= 18800:
       make_slack_call("\""+struct.json()["name"]+"\": Has less than 6 hours of fuel left")
 
 req = requests.get('https://esi.evetech.net/v1/corporations/'+str(corp_id)+'/starbases/', headers=header)
