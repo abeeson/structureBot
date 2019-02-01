@@ -51,10 +51,10 @@ def make_slack_call(message):
 
 access_token = refresh_esi_token()
 header = {'User-Agent':'structureBot: github link here','Authorization':'Bearer '+access_token}
-req = requests.get('https://esi.evetech.net/v2/corporations/'+str(corp_id)+'/structures/', headers=header)
+req = requests.get('https://esi.evetech.net/v3/corporations/'+str(corp_id)+'/structures/', headers=header)
 for structure in req.json():
   if 'fuel_expires' in structure:
-    struct = requests.get('https://esi.evetech.net/v1/universe/structures/'+str(structure["structure_id"]), headers=header)
+    struct = requests.get('https://esi.evetech.net/v2/universe/structures/'+str(structure["structure_id"]), headers=header)
     timediff = get_datetime_obj(structure["fuel_expires"])-datetime.utcnow()
 #    print(structure["structure_id"])
     if "error" in struct.json():
